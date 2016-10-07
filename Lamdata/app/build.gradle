@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.neenbedankt.android-apt'
+//def AAVersion='3.3.2'  //暂时放弃啦使用注解
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
@@ -21,13 +23,51 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+//    apt {
+//        arguments{
+//            androidManifestFile variant.processResources.manifestFile
+//           androidManifestFile variant.outputs[0].processResources.manifestFile
+//           resourcePackageName 'com.amdroid.lamdata'
+//        }
+//    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
+    //ui
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.android.support:cardview-v7:24.2.1'
+    //注解
+    //    compile 'com.android.support:support-annotations:24.2.1'
+    //    apt "org.androidannotations:androidannotations:$AAVersion"
+    //    compile "org.androidannotations:androidannotations-api:$AAVersion" // 暂时放弃啦使用注解
+    //dagger2  使用dagger2
+    compile 'com.google.dagger:dagger:2.0.2'
+    compile 'com.google.dagger:dagger-compiler:2.0.2'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    //rxjava
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    // retrofit 的配置
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
+
+    //mvp
+    //other
+
 }
