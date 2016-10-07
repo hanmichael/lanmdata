@@ -1,20 +1,19 @@
 package com.amdroid.lamdata;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.amdroid.lamdata.base.BaseActivity;
 import com.amdroid.lamdata.di.ActivityCompoment;
-import com.amdroid.lamdata.di.ActivityModule;
-import com.amdroid.lamdata.di.DaggerActivityCompoment;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity{
 
 
     private Button butget;
     private ActivityCompoment mActivityCompoment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,10 @@ public class MainActivity extends BaseActivity {
       //
         //  mActivityCompoment= DaggerActivityCompoment.builder().activityModule(new ActivityModule(this)).build().inject(this);
 
-        mActivityCompoment= (ActivityCompoment) DaggerActivityCompoment.builder().activityModule(new ActivityModule(this)).build().inject(MainActivity.this);
+//        mActivityCompoment= DaggerActivityCompoment.builder()
+//                .
+//                activityModule(new ActivityModule(this)).build();
+//        mActivityCompoment.inject(this);
     }
 
 //    private void getview() {

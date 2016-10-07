@@ -2,7 +2,6 @@ package com.amdroid.lamdata.di;
 
 import android.app.Application;
 
-import com.amdroid.lamdata.MainActivity;
 import com.amdroid.lamdata.net.RetrofitHelper;
 
 import javax.inject.Singleton;
@@ -17,7 +16,7 @@ import dagger.Component;
 public interface AppCompoment   {
 
 
-    MainActivity injectActivity(MainActivity activity);
+    //MainActivity injectActivity(MainActivity activity);
     Application getapplication();
     RetrofitHelper retrofitHelpter();
 

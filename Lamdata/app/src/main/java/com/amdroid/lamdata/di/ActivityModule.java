@@ -1,6 +1,8 @@
 package com.amdroid.lamdata.di;
 
-import android.app.Activity;
+import android.content.Context;
+
+import com.amdroid.lamdata.MainActivity;
 
 import dagger.Module;
 import dagger.Provides;
@@ -10,17 +12,16 @@ import dagger.Provides;
  */
 @Module
 public class ActivityModule  {
+    private Context mainATyContext;
 
-    private Activity mActivity;
-
-    public ActivityModule(Activity mActivity) {
-        this.mActivity = mActivity;
+    public ActivityModule(Context mainATyContext) {
+        this.mainATyContext = mainATyContext;
     }
+
     @ActivityScope
     @Provides
-    public Activity providerActivity(){
-
-        return mActivity;
+    public MainActivity providerMainActivity(){
+        return (MainActivity) mainATyContext;
 
 
     }
